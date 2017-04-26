@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+
+<body>
+<h2>Order</h2>
+  <form action="/order" method="post">
+
+  <h3>1.</h3>
+  <input type="radio" name="location" value="here" checked>Here<br>
+  <input type="radio" name="location" value="take-out">Take-out<br>
+
+  <h3>2.</h3>
+  <input type="radio" name="name" value="latte" checked>Latte<br>
+  <input type="radio" name="name" value="mocha">Mocha<br>
+
+  <h3>3.</h3>
+  <input type="radio" name="milk" value="whole" checked>Whole Milk<br>
+  <input type="radio" name="milk" value="2percent">2% Milk<br>
+  <input type="radio" name="milk" value="1percent">1% Milk<br>
+
+  <h3>4.</h3>
+  <input type="radio" name="size" value="large" checked>Large<br>
+  <input type="radio" name="size" value="medium">Medium<br>
+  <input type="radio" name="size" value="large">Small<br>
+  
+  <h3>5.</h3>
+  <select name="qty">
+    <option name="qty" value="1">1</option selected="selected">
+    <option name="qty" value="2">2</option>
+    <option name="qty" value="3">3</option>
+    <option name="qty" value="4">4</option>
+  </select>
+  <br><br>
+  <input type="submit" name="placeorder" value="Place this order">
+</body>
+</html>
