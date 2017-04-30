@@ -1,0 +1,35 @@
+<h2>Start your order</h2>
+  <form action="/placeOrder" method="post">
+
+   <h3>1.</h3>
+    <input type="radio" name="shopname" value="SF" checked>San Francisco<br>
+    <input type="radio" name="shopname" value="SJ">San Jose<br>
+
+   <h3>2.</h3>
+    <input type="radio" name="location" value="Here" checked>Here<br>
+    <input type="radio" name="location" value="Take-out">Take-out<br>
+
+   <h3>3.</h3>
+    <input type="radio" name="name" value="Latte" checked>Latte<br>
+    <input type="radio" name="name" value="Mocha">Mocha<br>
+
+   <h3>4.</h3>
+    <input type="radio" name="milk" value="Whole Milk" checked>Whole Milk<br>
+    <input type="radio" name="milk" value="2% Milk">2% Milk<br>
+    <input type="radio" name="milk" value="1% Milk">1% Milk<br>
+
+   <h3>5.</h3>
+    <input type="radio" name="size" value="Large" checked>Large<br>
+    <input type="radio" name="size" value="Medium">Medium<br>
+    <input type="radio" name="size" value="Small">Small<br>
+    
+   <h3>6.</h3>
+    <select name="qty">
+      <option name="qty" value="1">1</option selected="selected">
+      <option name="qty" value="2">2</option>
+      <option name="qty" value="3">3</option>
+      <option name="qty" value="4">4</option>
+    </select>
+    <br><br>
+    <input type="submit" name="placeorder" value="Place this order">
+  </form>

@@ -1,14 +1,14 @@
 var express = require('express');
 var request = require('request');
 var router = express.Router();
-var address = 'http://127.0.0.1:9090/v3/starbucks/order'
+var address = 'http://54.215.214.142:9090/v3/starbucks/order'
 
 router.get('/', function(req, res, next) {
 	res.send({'message': 'order error' });
 })
 
 router.get('/:order_id', function(req, res, next) {
-	// console.log('order with id ', req.params.order_id)
+	console.log('order with id ', req.params.order_id)
 	request.get(
 		address + '/' + req.params.order_id,
 		function (error, response, body) {
