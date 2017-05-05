@@ -1,0 +1,14 @@
+<div class="navbar navbar-default navbar-static-top">
+  <div class="container">
+    <ul class="nav navbar-nav">
+      <a href="/" class="navbar-brand"><i class="fa fa-coffee"></i> KTR Coffee</a>
+      <li><a href="/">Home</a></li>
+      <li><a href="/stores">Stores</a></li>
+      <% if(typeof(user) !== "undefined") {%>
+      <li><a href="/profile">Profile</a></li>
+      <li><a href="/myorders">My Orders</a></li>
+      <li><a href="/logout">Logout</a></li>
+      <%}%>
+    </ul>
+  </div>
+</div>

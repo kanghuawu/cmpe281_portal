@@ -1,0 +1,70 @@
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Instagram - Powered by Satellizer</title>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.0/paper/bootstrap.min.css">
+  <link rel="stylesheet" href="//code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
+  <link rel="stylesheet" href="stylesheets/style.css">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+  <script src="https://use.fontawesome.com/ed62a54d4b.js"></script>
+  <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+  <style type="text/css">
+    td,th
+    {
+        padding:0 15px 0 15px;
+    }
+</style>
+</head>
+<body>
+<% include ../views/common/header %>
+<div class="container">
+      <div class="jumbotron">
+          Thank you for your order.
+          <form action='/myorders' method='post'>
+           Please choose stores:
+           <select name="location" required  onchange="javascript: if(this.value != '0') this.form.submit(); else alert('hello');">
+              <option value='0'>Choosing a store</option>
+               <option value="sj.com" <% if(itemSelected == 'sj.com'){%> selected <%}%>>San Jose</option>
+               <option value="portal.com" <% if(itemSelected == 'portal.com'){%> selected <%}%>>San Francisco</option>
+            </select>
+          </form>
+            <br/>
+            <table border='1'>
+                <tr>
+                    <th>#</th>
+                    <th>Location</th>
+                    <th>Quantity</th>
+                    <th>Name</th>
+                    <th>Milk</th>
+                    <th>Size</th>
+                    <th>Status</th>
+                </tr>
+                <% for(var i=0;i<orders.length;i++){
+                      if(orders[i].status =='PLACED'){%>
+                        <tr>
+                            <td><%=i+1%></td>
+                            <td><%= orders[i].location%></td>
+                            <td><%= orders[i].items[0].qty%></td>
+                            <td><%= orders[i].items[0].name%></td>
+                            <td><%= orders[i].items[0].milk%></td>
+                            <td><%= orders[i].items[0].size%></td>
+                            <td><a href='#'><%= orders[i].status%></a></td>
+                        </tr>
+                <%}else{%>
+                  <tr>
+                      <td><%=i+1%></td>
+                      <td><%= orders[i].location%></td>
+                      <td><%= orders[i].items[0].qty%></td>
+                      <td><%= orders[i].items[0].name%></td>
+                      <td><%= orders[i].items[0].milk%></td>
+                      <td><%= orders[i].items[0].size%></td>
+                      <td><%= orders[i].status%></td>
+                  </tr>
+                <%}}%>
+            </table>
+      </div>
+    </div>
+</body>
