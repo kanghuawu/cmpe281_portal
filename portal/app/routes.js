@@ -162,9 +162,34 @@ module.exports = function(app, passport,fs,request,hostname,dataconfig) {
       res.render('myorders.ejs',{  user : req.user,orders:[],itemSelected:'' })
     });
 
+    app.post('/myorder/:order_id',function(req,res){
+      console.log(req.body);
+      console.log(req.params.order_id);
+      var hostnam = (req.body.shopName=='SF')? "portal.com" : "sj.com";
+      console.log("hostname"+ hostname.address);
+      var options = {
+        method: 'get',
+        url: hostname.address + "/"+req.body.shopName + "/starbucks/order/"+req.params.order_id,
+        headers: {
+          'Host': hostnam
+        }
+      }
+      console.log(options);
+      request(options,function (error, response, body) {
+          if (!error && response.statusCode == 200) {
+            console.log("response::::: "+JSON.stringify(response.body));
+            res.render('myorder.ejs',  {user : req.user, order:JSON.parse(response.body),data:dataconfig,hostname:hostname,shopName:req.body.shopName});
+          }else{
+            console.log(response.statusCode);
+            console.log(error);
+            res.end(JSON.stringify({'message':'wrong order'}))
+          }
+        }
+      );
+    })
     app.post('/myorders',isLoggedIn, function(req,res){
-        var hostnam = req.body.location;
-        var contextroot =  (req.body.location=='sj.com') ? "/SJ/starbucks/orders" : "/SF/starbucks/orders";
+        var hostnam = (req.body.shopName=='SJ') ? "sj.com" : "portal.com";
+        var contextroot =  (req.body.shopName=='SJ') ? "/SJ/starbucks/orders" : "/SF/starbucks/orders";
         console.log("hostname"+ hostname.address);
         var options = {
           method: 'get',
@@ -177,7 +202,7 @@ module.exports = function(app, passport,fs,request,hostname,dataconfig) {
         request(options,function (error, response, body) {
             if (!error && response.statusCode == 200) {
               console.log(typeof response.body);
-              res.render('myorders.ejs',{user : req.user,orders:JSON.parse(response.body),itemSelected:req.body.location});
+              res.render('myorders.ejs',{user : req.user,orders:JSON.parse(response.body),itemSelected:req.body.shopName});
             }else{
               console.log(response.statusCode);
               console.log(error);
