@@ -10,3 +10,60 @@
   <td><%= item.size %></td>
 </tr>
 <% }); %>
+<b><%=order.links.payment%></b>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("button").click(function(){
+        // $.post(,
+        // {},
+        // function(data,status){
+        //     alert("Data: " + data + "\nStatus: " + status);
+        // });
+        
+        // var url = '<%=order.links.payment%>'
+        // alert('button clicked ' + url)
+     //    $.get("http://54.193.44.42:8000/SF/starbucks/orders", function(data, status){
+	    //     alert("Data: " + data + "\nStatus: " + status);
+	    // });
+        /*
+        $.ajax({
+        	type: "POST",
+        	url: <%=order.links.payment%>,
+        	data: "",
+        	success: alert("aaa"),
+        	dataType: "json"
+        });
+        */
+        
+        $.ajax({
+	      // url: '<%=order.links.payment%>',
+	      url: 'http://54.215.214.142:9090/SF/starbucks/order/ce8942b6-6935-43c2-82be-1bc72dedbd6f/pay',
+	      type: "POST",
+	      // headers: { 
+	      //   "Host" : "portal.com"
+	      // },
+	      data: "",
+	      dataType:"json",
+	      // crossDomain: true, 
+	      success: function (msg) { 
+	      	alert('success') 
+	      },
+          error: function (err) { 
+          	alert(err.status + ", " + err.responseText)
+          }
+	      // success: alert("abc")
+	      // success:  alert('success') ,
+       //  error:  alert('error')
+	    })
+    });
+});
+
+</script>
+</head>
+<body>
+
+<button>Pay this order</button>
+
+</body>
