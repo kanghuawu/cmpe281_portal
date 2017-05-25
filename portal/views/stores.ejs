@@ -1,0 +1,67 @@
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Instagram - Powered by Satellizer</title>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.0/paper/bootstrap.min.css">
+  <link rel="stylesheet" href="//code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
+  <link rel="stylesheet" href="stylesheets/style.css">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+
+</head>
+<body>
+<% include ../views/common/header %>
+<div class="container">
+      <div class="jumbotron">
+      <h3>Start your order</h3>
+      <form action="/placeOrder" method="post">
+
+       1.Please Choose Store:
+       <select name="shopName" required>
+         <% for(var i=0;i<data.stores.length;i++){%>
+           <option value="<%= data.stores[i].code %>"><%= data.stores[i].name %></option>
+          <%}%>
+        </select>
+        <br/>
+       2.Location:
+       <select name="location" required>
+         <% for(var i=0;i<data.location.length;i++){%>
+           <option value="<%= data.location[i] %>"><%= data.location[i] %></option>
+          <%}%>
+        </select>
+          <br/>
+       3.Type of Coffee:
+       <select name="name" required>
+         <% for(var i=0;i<data.name.length;i++){%>
+           <option value="<%= data.name[i] %>"><%= data.name[i] %></option>
+          <%}%>
+        </select>
+        <br/>
+       4.Type of Milk:
+       <select name="milk" required>
+         <% for(var i=0;i<data.milk.length;i++){%>
+           <option value="<%= data.milk[i] %>"><%= data.milk[i] %></option>
+         <%}%>
+        </select>
+        <br/>
+       5.Type of Size:
+       <select name="size" required>
+         <% for(var i=0;i<data.size.length;i++){%>
+           <option value="<%= data.size[i] %>"><%= data.size[i] %></option>
+         <%}%>
+        </select>
+        <br/>
+        6.Quantity:
+        <select name="qty">
+          <% for(var i=0;i<data.size.length;i++){%>
+            <option value="<%= data.qty[i] %>"><%= data.qty[i] %></option>
+          <%}%>
+        </select>
+        <br><br>
+        <input type="submit" name="placeorder" value="Place this order">
+      </form>
+      </div>
+    </div>
+</body>

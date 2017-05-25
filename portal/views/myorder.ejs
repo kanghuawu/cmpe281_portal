@@ -1,0 +1,67 @@
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Instagram - Powered by Satellizer</title>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.0/paper/bootstrap.min.css">
+  <link rel="stylesheet" href="//code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
+  <link rel="stylesheet" href="stylesheets/style.css">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+  <script src="https://use.fontawesome.com/ed62a54d4b.js"></script>
+  <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+</head>
+<body>
+<% include ../views/common/header %>
+<div class="container">
+      <div class="jumbotron">
+          Thank you for your order.
+          <form action='/payOrder' method='post'>
+           1.Your location:
+           <select name="location" required>
+             <% for(var i=0;i<data.location.length;i++){%>
+               <option value="<%= data.location[i] %>" <%if(data.location[i] == order.location ){%> selected <%}%> "><%= data.location[i] %></option>
+              <%}%>
+            </select>
+            <br/>
+           2.Your Coffee Type:<
+           <select name="name" required>
+             <% for(var i=0;i<data.name.length;i++){%>
+               <option value="<%= data.name[i] %>" <%if(data.name[i] == order.items[0].name ){%> selected<%}%>"><%= data.name[i] %></option>
+              <%}%>
+            </select>
+            <br/>
+           3.Your Milk Choice:
+           <select name="milk" required>
+             <% for(var i=0;i<data.milk.length;i++){%>
+               <option value="<%= data.milk[i] %>" <%if(data.milk[i] == order.items[0].milk ){%> selected<%}%>><%= data.milk[i] %></option>
+             <%}%>
+            </select>
+            <br/>
+           4.Your Size Choice
+           <select name="size" required>
+             <% for(var i=0;i<data.size.length;i++){%>
+               <option value="<%= data.size[i] %>" <%if(data.size[i] == order.items[0].size ){%> selected<%}%>><%= data.size[i] %></option>
+             <%}%>
+            </select>
+            <br/>
+           5. Quantity:
+           <select name="qty">
+             <% for(var i=0;i<data.size.length;i++){%>
+               <option value="<%= data.qty[i] %>" <%if(data.qty[i] == order.items[0].qty ){%> selected<%}%>><%= data.qty[i] %></option>
+             <%}%>
+           </select>
+            <input type='hidden' class='orderlink' name='orderLink' value='<%=order.links.order%>'>
+            <input type='hidden' class='hostname' name='hostname' value='<%=hostname.address%>'>
+            <input type='hidden' class='payLink' name='payLink' value='<%=order.links.payment%>'>
+            <input type='hidden' class='shopName' name='shopName' value='<%=shopName%>'>
+
+            <br><br>
+            <input type='submit' formmethod="post" formaction="/updateOrder" value="Update order">
+            <input type='submit' formmethod="post" formaction="/cancelOrder" value="Cancel order">
+            <input type='submit' value="Pay order">
+          </form>
+      </div>
+    </div>
+</body>
